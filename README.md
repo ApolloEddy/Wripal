@@ -1,16 +1,115 @@
-# wripal
+# Wripal 📝
 
-A new Flutter project.
+**高性能跨平台写作助手** - 手写笔记 + AI 智能管理
 
-## Getting Started
+[![Flutter](https://img.shields.io/badge/Flutter-3.38.4-blue.svg)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-3.10-blue.svg)](https://dart.dev)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-This project is a starting point for a Flutter application.
+## ✨ 功能特性
 
-A few resources to get you started if this is your first Flutter project:
+### 📚 书架管理
+- 创建和管理多本书籍
+- 章节大纲编辑
+- 章节管理与排序
+- 字数统计与进度追踪
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### ✍️ 富文本编辑
+- 基于 flutter_quill 的富文本编辑器
+- 支持标题、列表、引用等格式
+- 自动保存功能
+- Web 平台专用轻量编辑器
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 🎨 手写绘图 (开发中)
+- 笔触绘制与渲染
+- 多种笔触样式
+- 橡皮擦工具
+- 撤销/重做支持
+
+### 🎯 特色
+- **跨平台**: 支持 Windows、Android、iOS、Web
+- **拟态 UI**: 现代化圆角 + 拟态设计风格
+- **暗色主题**: 支持亮色/暗色主题切换
+- **可拔插卡片系统**: 模块化功能设计
+
+## 🚀 快速开始
+
+### 环境要求
+- Flutter SDK 3.10.0+
+- Dart SDK 3.10.0+
+- Android Studio / VS Code
+
+### 安装运行
+
+```bash
+# 克隆项目
+git clone https://github.com/your-username/wripal.git
+cd wripal
+
+# 安装依赖
+flutter pub get
+
+# 运行 Web 版
+flutter run -d chrome
+
+# 运行 Windows 桌面版
+flutter run -d windows
+
+# 运行 Android 版
+flutter run -d <device-id>
+```
+
+## 📁 项目结构
+
+```
+lib/
+├── app/                    # 应用级配置
+│   ├── theme/              # 主题配置
+│   └── router/             # 路由配置
+├── core/                   # 核心模块
+│   └── constants/          # 常量定义
+├── features/               # 功能模块
+│   ├── base/               # 基础卡片系统
+│   ├── bookshelf/          # 书架功能
+│   ├── handwriting/        # 手写绘图
+│   └── rich_editor/        # 富文本编辑
+└── shared/                 # 共享组件
+    └── widgets/            # 通用 Widget
+```
+
+## 🛠️ 技术栈
+
+| 类别 | 技术 |
+|------|------|
+| 框架 | Flutter 3.x |
+| 状态管理 | flutter_riverpod |
+| 本地存储 | Hive, SharedPreferences |
+| 富文本 | flutter_quill |
+| 字体 | Google Fonts |
+
+## 📋 开发计划
+
+### Phase 1 (当前)
+- [x] 项目初始化与基础架构
+- [x] 书架管理功能
+- [x] 富文本编辑器
+- [x] 响应式侧栏布局
+- [ ] 手写绘图功能完善
+
+### Phase 2
+- [ ] 数据持久化优化
+- [ ] 主题系统完善
+- [ ] 测试覆盖
+
+### Phase 3
+- [ ] AI 接口预留
+- [ ] 导出功能 (PDF/SVG)
+- [ ] 多语言支持
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+## 📄 许可证
+
+本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件

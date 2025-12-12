@@ -1,5 +1,5 @@
 /// Wripal 应用颜色方案
-/// 
+///
 /// 定义应用的统一颜色方案，支持亮色和暗色模式
 
 import 'package:flutter/material.dart';
@@ -68,48 +68,48 @@ class AppColors {
   ];
 
   // 亮色主题 ColorScheme
-  static ColorScheme get lightColorScheme => ColorScheme(
-        brightness: Brightness.light,
-        primary: primary,
-        onPrimary: Colors.white,
-        primaryContainer: primaryLight,
-        onPrimaryContainer: primaryDark,
-        secondary: secondary,
-        onSecondary: Colors.black87,
-        secondaryContainer: secondaryLight,
-        onSecondaryContainer: secondaryDark,
-        tertiary: accent,
-        onTertiary: Colors.white,
-        error: error,
-        onError: Colors.white,
-        surface: lightSurface,
-        onSurface: lightOnSurface,
-        surfaceContainerHighest: lightBackground,
-        onSurfaceVariant: lightOnBackground,
-        outline: const Color(0xFFD0D0D8),
-        outlineVariant: const Color(0xFFE8E8EC),
-      );
+  static ColorScheme get lightColorScheme => const ColorScheme(
+    brightness: Brightness.light,
+    primary: primary,
+    onPrimary: Colors.white,
+    primaryContainer: primaryLight,
+    onPrimaryContainer: primaryDark,
+    secondary: secondary,
+    onSecondary: Colors.black87,
+    secondaryContainer: secondaryLight,
+    onSecondaryContainer: secondaryDark,
+    tertiary: accent,
+    onTertiary: Colors.white,
+    error: error,
+    onError: Colors.white,
+    surface: lightSurface,
+    onSurface: lightOnSurface,
+    surfaceContainerHighest: lightBackground,
+    onSurfaceVariant: lightOnBackground,
+    outline: Color(0xFFD0D0D8),
+    outlineVariant: Color(0xFFE8E8EC),
+  );
 
   // 暗色主题 ColorScheme
-  static ColorScheme get darkColorScheme => ColorScheme(
-        brightness: Brightness.dark,
-        primary: primary,
-        onPrimary: Colors.white,
-        primaryContainer: primaryDark,
-        onPrimaryContainer: primaryLight,
-        secondary: secondary,
-        onSecondary: Colors.black87,
-        secondaryContainer: secondaryDark,
-        onSecondaryContainer: secondaryLight,
-        tertiary: accent,
-        onTertiary: Colors.white,
-        error: error,
-        onError: Colors.white,
-        surface: darkSurface,
-        onSurface: darkOnSurface,
-        surfaceContainerHighest: darkBackground,
-        onSurfaceVariant: darkOnBackground,
-        outline: const Color(0xFF3A3A4A),
-        outlineVariant: const Color(0xFF2A2A3A),
-      );
+  static ColorScheme get darkColorScheme => const ColorScheme(
+    brightness: Brightness.dark,
+    primary: primary,
+    onPrimary: Colors.white,
+    primaryContainer: primaryDark,
+    onPrimaryContainer: primaryLight,
+    secondary: secondary,
+    onSecondary: Colors.black87,
+    secondaryContainer: secondaryDark,
+    onSecondaryContainer: secondaryLight,
+    tertiary: accent,
+    onTertiary: Colors.white,
+    error: error,
+    onError: Colors.white,
+    surface: darkSurface,
+    onSurface: darkOnSurface,
+    surfaceContainerHighest: darkBackground,
+    onSurfaceVariant: darkOnBackground,
+    outline: Color(0xFF3A3A4A),
+    outlineVariant: Color(0xFF2A2A3A),
+  );
 }

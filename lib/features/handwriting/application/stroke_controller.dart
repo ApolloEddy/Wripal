@@ -1,5 +1,5 @@
 /// 笔触控制器
-/// 
+///
 /// 使用 Riverpod 管理画布状态和笔触操作
 
 import 'package:flutter/material.dart';
@@ -56,9 +56,7 @@ class StrokeController extends StateNotifier<CanvasState> {
       timestamp: DateTime.now().millisecondsSinceEpoch,
     );
 
-    state = state.copyWith(
-      currentStroke: state.currentStroke!.addPoint(point),
-    );
+    state = state.copyWith(currentStroke: state.currentStroke!.addPoint(point));
   }
 
   /// 结束绘制
@@ -87,7 +85,7 @@ class StrokeController extends StateNotifier<CanvasState> {
 
   /// 擦除指定位置的笔触
   void _eraseAt(Offset position) {
-    final eraserRadius = DrawingConstants.eraserWidth / 2;
+    const eraserRadius = DrawingConstants.eraserWidth / 2;
     final eraserRect = Rect.fromCircle(center: position, radius: eraserRadius);
 
     final remainingStrokes = <Stroke>[];
@@ -170,11 +168,7 @@ class StrokeController extends StateNotifier<CanvasState> {
       [...state.strokes],
     ];
 
-    state = state.copyWith(
-      strokes: [],
-      undoStack: newUndoStack,
-      redoStack: [],
-    );
+    state = state.copyWith(strokes: [], undoStack: newUndoStack, redoStack: []);
   }
 
   /// 设置工具
@@ -209,11 +203,7 @@ class StrokeController extends StateNotifier<CanvasState> {
 
   /// 加载笔触数据
   void loadStrokes(List<Stroke> strokes) {
-    state = state.copyWith(
-      strokes: strokes,
-      undoStack: [],
-      redoStack: [],
-    );
+    state = state.copyWith(strokes: strokes, undoStack: [], redoStack: []);
   }
 
   /// 获取所有笔触用于保存
@@ -223,5 +213,5 @@ class StrokeController extends StateNotifier<CanvasState> {
 /// 画布状态 Provider
 final strokeControllerProvider =
     StateNotifierProvider<StrokeController, CanvasState>((ref) {
-  return StrokeController();
-});
+      return StrokeController();
+    });

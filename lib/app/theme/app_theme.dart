@@ -1,5 +1,5 @@
 /// Wripal 应用主题配置
-/// 
+///
 /// 定义应用的亮色/暗色主题，采用圆角 + 拟态设计风格
 
 import 'package:flutter/material.dart';
@@ -51,7 +51,7 @@ class AppTheme {
       colorScheme: AppColors.lightColorScheme,
       textTheme: _textTheme,
       scaffoldBackgroundColor: AppColors.lightBackground,
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         elevation: 0,
         backgroundColor: AppColors.lightSurface,
         foregroundColor: AppColors.lightOnSurface,
@@ -86,7 +86,7 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radiusMedium),
-          borderSide: BorderSide(color: AppColors.primary, width: 2),
+          borderSide: const BorderSide(color: AppColors.primary, width: 2),
         ),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -106,7 +106,7 @@ class AppTheme {
       colorScheme: AppColors.darkColorScheme,
       textTheme: _textTheme,
       scaffoldBackgroundColor: AppColors.darkBackground,
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         elevation: 0,
         backgroundColor: AppColors.darkSurface,
         foregroundColor: AppColors.darkOnSurface,
@@ -141,7 +141,7 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radiusMedium),
-          borderSide: BorderSide(color: AppColors.primary, width: 2),
+          borderSide: const BorderSide(color: AppColors.primary, width: 2),
         ),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(

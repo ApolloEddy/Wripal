@@ -1,5 +1,5 @@
 /// 响应式侧栏组件
-/// 
+///
 /// 自适应横屏/竖屏模式，支持展开/收起动画
 /// 显示已启用的卡片列表
 
@@ -18,7 +18,7 @@ class AdaptiveSidebar extends ConsumerWidget {
 
   /// 侧栏展开宽度
   static const double expandedWidth = 240.0;
-  
+
   /// 侧栏收起宽度
   static const double collapsedWidth = 72.0;
 
@@ -26,7 +26,6 @@ class AdaptiveSidebar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isExpanded = ref.watch(sidebarExpandedProvider);
     final cardManager = ref.watch(cardManagerProvider);
-    final colorScheme = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return AnimatedContainer(
@@ -51,9 +50,9 @@ class AdaptiveSidebar extends ConsumerWidget {
         children: [
           // 头部 Logo 区域
           _buildHeader(context, ref, isExpanded),
-          
+
           const SizedBox(height: 8),
-          
+
           // 卡片列表
           Expanded(
             child: ListView.builder(
@@ -62,7 +61,7 @@ class AdaptiveSidebar extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final card = cardManager.enabledCards[index];
                 final isSelected = card.id == cardManager.selectedCardId;
-                
+
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 4),
                   child: _buildCardItem(
@@ -76,9 +75,9 @@ class AdaptiveSidebar extends ConsumerWidget {
               },
             ),
           ),
-          
+
           const Divider(height: 1),
-          
+
           // 底部操作区
           _buildFooter(context, ref, isExpanded),
         ],
@@ -89,7 +88,7 @@ class AdaptiveSidebar extends ConsumerWidget {
   /// 构建头部区域
   Widget _buildHeader(BuildContext context, WidgetRef ref, bool isExpanded) {
     final colorScheme = Theme.of(context).colorScheme;
-    
+
     return Container(
       height: 80,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -116,7 +115,7 @@ class AdaptiveSidebar extends ConsumerWidget {
               size: 24,
             ),
           ),
-          
+
           // 应用名称（展开时显示）
           if (isExpanded) ...[
             const SizedBox(width: 12),
@@ -144,9 +143,9 @@ class AdaptiveSidebar extends ConsumerWidget {
     required bool isExpanded,
   }) {
     final colorScheme = Theme.of(context).colorScheme;
-    
+
     return Material(
-      color: isSelected 
+      color: isSelected
           ? colorScheme.primary.withAlpha((0.12 * 255).round())
           : Colors.transparent,
       borderRadius: BorderRadius.circular(12),
@@ -157,19 +156,17 @@ class AdaptiveSidebar extends ConsumerWidget {
         },
         child: Container(
           height: 48,
-          padding: EdgeInsets.symmetric(
-            horizontal: isExpanded ? 12 : 0,
-          ),
+          padding: EdgeInsets.symmetric(horizontal: isExpanded ? 12 : 0),
           child: Row(
-            mainAxisAlignment: isExpanded 
-                ? MainAxisAlignment.start 
+            mainAxisAlignment: isExpanded
+                ? MainAxisAlignment.start
                 : MainAxisAlignment.center,
             children: [
               Icon(
                 card.icon,
                 size: 22,
-                color: isSelected 
-                    ? colorScheme.primary 
+                color: isSelected
+                    ? colorScheme.primary
                     : colorScheme.onSurface.withAlpha((0.7 * 255).round()),
               ),
               if (isExpanded) ...[
@@ -179,9 +176,11 @@ class AdaptiveSidebar extends ConsumerWidget {
                     card.name,
                     style: TextStyle(
                       fontSize: 14,
-                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-                      color: isSelected 
-                          ? colorScheme.primary 
+                      fontWeight: isSelected
+                          ? FontWeight.w600
+                          : FontWeight.normal,
+                      color: isSelected
+                          ? colorScheme.primary
                           : colorScheme.onSurface,
                     ),
                     overflow: TextOverflow.ellipsis,
@@ -201,15 +200,15 @@ class AdaptiveSidebar extends ConsumerWidget {
       height: 60,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Row(
-        mainAxisAlignment: isExpanded 
-            ? MainAxisAlignment.spaceBetween 
+        mainAxisAlignment: isExpanded
+            ? MainAxisAlignment.spaceBetween
             : MainAxisAlignment.center,
         children: [
           // 展开/收起按钮
           IconButton(
             icon: Icon(
-              isExpanded 
-                  ? Icons.chevron_left_rounded 
+              isExpanded
+                  ? Icons.chevron_left_rounded
                   : Icons.chevron_right_rounded,
             ),
             onPressed: () {
@@ -217,7 +216,7 @@ class AdaptiveSidebar extends ConsumerWidget {
             },
             tooltip: isExpanded ? '收起侧栏' : '展开侧栏',
           ),
-          
+
           // 设置按钮（展开时显示）
           if (isExpanded)
             IconButton(
