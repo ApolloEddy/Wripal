@@ -1,6 +1,6 @@
 # Wripal 📝
 
-**高性能跨平台写作助手** - 手写笔记 + AI 智能管理
+**高性能跨平台写作助手** - 专业写作 + AI 智能管理
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.38.4-blue.svg)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-3.10-blue.svg)](https://dart.dev)
@@ -15,10 +15,12 @@
 - 字数统计与进度追踪
 
 ### ✍️ 富文本编辑
-- 基于 flutter_quill 的富文本编辑器
-- 支持标题、列表、引用等格式
-- 自动保存功能
-- Web 平台专用轻量编辑器
+- 基于 **fleather** 的富文本编辑器
+- 支持加粗、斜体、下划线、删除线
+- 支持标题、列表、对齐、缩进
+- 可隐藏/显示的工具栏
+- 自动保存功能（2秒防抖）
+- 内容以 JSON Delta 格式持久化
 
 ### 🎨 手写绘图 (开发中)
 - 笔触绘制与渲染
@@ -26,10 +28,14 @@
 - 橡皮擦工具
 - 撤销/重做支持
 
+### 🌓 主题切换
+- 支持亮色/暗色主题
+- 主题设置持久化
+- 侧栏一键切换
+
 ### 🎯 特色
 - **跨平台**: 支持 Windows、Android、iOS、Web
-- **拟态 UI**: 现代化圆角 + 拟态设计风格
-- **暗色主题**: 支持亮色/暗色主题切换
+- **简约 UI**: 现代化圆角 + 简洁设计风格
 - **可拔插卡片系统**: 模块化功能设计
 
 ## 🚀 快速开始
@@ -49,11 +55,14 @@ cd wripal
 # 安装依赖
 flutter pub get
 
-# 运行 Web 版
-flutter run -d chrome
-
 # 运行 Windows 桌面版
 flutter run -d windows
+
+# 运行 Windows 发布版（性能更好）
+flutter run -d windows --release
+
+# 运行 Web 版
+flutter run -d chrome
 
 # 运行 Android 版
 flutter run -d <device-id>
@@ -71,8 +80,7 @@ lib/
 ├── features/               # 功能模块
 │   ├── base/               # 基础卡片系统
 │   ├── bookshelf/          # 书架功能
-│   ├── handwriting/        # 手写绘图
-│   └── rich_editor/        # 富文本编辑
+│   └── handwriting/        # 手写绘图
 └── shared/                 # 共享组件
     └── widgets/            # 通用 Widget
 ```
@@ -84,26 +92,26 @@ lib/
 | 框架 | Flutter 3.x |
 | 状态管理 | flutter_riverpod |
 | 本地存储 | Hive, SharedPreferences |
-| 富文本 | flutter_quill |
-| 字体 | Google Fonts |
+| 富文本 | fleather |
 
 ## 📋 开发计划
 
 ### Phase 1 (当前)
 - [x] 项目初始化与基础架构
 - [x] 书架管理功能
-- [x] 富文本编辑器
+- [x] 富文本编辑器 (fleather)
 - [x] 响应式侧栏布局
+- [x] 主题切换功能
 - [ ] 手写绘图功能完善
 
 ### Phase 2
 - [ ] 数据持久化优化
-- [ ] 主题系统完善
+- [ ] 导出功能 (TXT/Markdown)
 - [ ] 测试覆盖
 
 ### Phase 3
 - [ ] AI 接口预留
-- [ ] 导出功能 (PDF/SVG)
+- [ ] 导出功能 (PDF)
 - [ ] 多语言支持
 
 ## 🤝 贡献
