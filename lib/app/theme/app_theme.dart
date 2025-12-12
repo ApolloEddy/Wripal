@@ -3,7 +3,6 @@
 /// 定义应用的亮色/暗色主题，采用圆角 + 拟态设计风格
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'color_schemes.dart';
 
 /// 应用主题管理类
@@ -16,30 +15,20 @@ class AppTheme {
   static const double radiusLarge = 16.0;
   static const double radiusXLarge = 24.0;
 
-  /// 拟态阴影配置
+  /// 简化阴影配置（性能优化：减少层数和模糊度）
   static List<BoxShadow> neumorphicShadowLight = [
     BoxShadow(
-      color: Colors.white.withAlpha((0.8 * 255).round()),
-      offset: const Offset(-4, -4),
-      blurRadius: 8,
-    ),
-    BoxShadow(
-      color: Colors.black.withAlpha((0.1 * 255).round()),
-      offset: const Offset(4, 4),
-      blurRadius: 8,
+      color: Colors.black.withAlpha(20),
+      offset: const Offset(2, 2),
+      blurRadius: 4,
     ),
   ];
 
   static List<BoxShadow> neumorphicShadowDark = [
     BoxShadow(
-      color: Colors.white.withAlpha((0.05 * 255).round()),
-      offset: const Offset(-4, -4),
-      blurRadius: 8,
-    ),
-    BoxShadow(
-      color: Colors.black.withAlpha((0.4 * 255).round()),
-      offset: const Offset(4, 4),
-      blurRadius: 8,
+      color: Colors.black.withAlpha(60),
+      offset: const Offset(2, 2),
+      blurRadius: 4,
     ),
   ];
 
@@ -153,45 +142,20 @@ class AppTheme {
     );
   }
 
-  /// 文本主题
+  /// 文本主题（使用系统字体，避免网络加载造成卡顿）
   static TextTheme get _textTheme {
-    return GoogleFonts.notoSansScTextTheme().copyWith(
-      displayLarge: GoogleFonts.notoSansSc(
-        fontSize: 32,
-        fontWeight: FontWeight.bold,
-      ),
-      displayMedium: GoogleFonts.notoSansSc(
-        fontSize: 28,
-        fontWeight: FontWeight.bold,
-      ),
-      displaySmall: GoogleFonts.notoSansSc(
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-      ),
-      headlineMedium: GoogleFonts.notoSansSc(
-        fontSize: 20,
-        fontWeight: FontWeight.w600,
-      ),
-      titleLarge: GoogleFonts.notoSansSc(
-        fontSize: 18,
-        fontWeight: FontWeight.w600,
-      ),
-      titleMedium: GoogleFonts.notoSansSc(
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
-      ),
-      bodyLarge: GoogleFonts.notoSansSc(
-        fontSize: 16,
-        fontWeight: FontWeight.normal,
-      ),
-      bodyMedium: GoogleFonts.notoSansSc(
-        fontSize: 14,
-        fontWeight: FontWeight.normal,
-      ),
-      labelLarge: GoogleFonts.notoSansSc(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-      ),
+    // 使用 Typography 的默认字体作为基础
+    const textTheme = TextTheme(
+      displayLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+      displayMedium: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+      displaySmall: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      headlineMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+      titleLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+      titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+      bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+      bodyMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+      labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
     );
+    return textTheme;
   }
 }

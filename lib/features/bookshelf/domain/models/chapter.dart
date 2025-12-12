@@ -1,6 +1,6 @@
 /// 章节数据模型
 ///
-/// 代表书籍中的一个章节，通过 contentId 关联到 RichDocument 存储实际内容
+/// 代表书籍中的一个章节，包含实际内容文本
 /// 支持 JSON 序列化用于 Hive 持久化存储
 
 /// 章节模型
@@ -16,6 +16,9 @@ class Chapter {
 
   /// 排序索引（用于章节顺序）
   final int orderIndex;
+
+  /// 章节内容文本
+  final String content;
 
   /// 关联的富文本文档 ID（存储实际内容）
   final String? contentId;
@@ -40,6 +43,7 @@ class Chapter {
     required this.bookId,
     required this.title,
     required this.orderIndex,
+    this.content = '',
     this.contentId,
     this.isCompleted = false,
     this.wordCount = 0,
@@ -73,6 +77,7 @@ class Chapter {
       bookId: json['bookId'] as String,
       title: json['title'] as String,
       orderIndex: json['orderIndex'] as int,
+      content: json['content'] as String? ?? '',
       contentId: json['contentId'] as String?,
       isCompleted: json['isCompleted'] as bool? ?? false,
       wordCount: json['wordCount'] as int? ?? 0,
@@ -89,6 +94,7 @@ class Chapter {
       'bookId': bookId,
       'title': title,
       'orderIndex': orderIndex,
+      'content': content,
       'contentId': contentId,
       'isCompleted': isCompleted,
       'wordCount': wordCount,
@@ -102,6 +108,7 @@ class Chapter {
   Chapter copyWith({
     String? title,
     int? orderIndex,
+    String? content,
     String? contentId,
     bool? isCompleted,
     int? wordCount,
@@ -113,6 +120,7 @@ class Chapter {
       bookId: bookId,
       title: title ?? this.title,
       orderIndex: orderIndex ?? this.orderIndex,
+      content: content ?? this.content,
       contentId: contentId ?? this.contentId,
       isCompleted: isCompleted ?? this.isCompleted,
       wordCount: wordCount ?? this.wordCount,

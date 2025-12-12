@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../app/theme/color_schemes.dart';
+import '../../app/theme/theme_provider.dart';
 import '../../features/base/card_registry.dart';
 
 /// 侧栏展开状态 Provider
@@ -28,59 +29,62 @@ class AdaptiveSidebar extends ConsumerWidget {
     final cardManager = ref.watch(cardManagerProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.easeInOut,
-      width: isExpanded ? expandedWidth : collapsedWidth,
-      decoration: BoxDecoration(
-        color: isDark ? AppColors.sidebarDark : AppColors.sidebarLight,
-        borderRadius: const BorderRadius.only(
-          topRight: Radius.circular(24),
-          bottomRight: Radius.circular(24),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withAlpha((0.1 * 255).round()),
-            blurRadius: 8,
-            offset: const Offset(2, 0),
+    // 使用 RepaintBoundary 隔离重绘区域，提升动画性能
+    return RepaintBoundary(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150), // 缩短动画时间
+        curve: Curves.easeOut, // 使用更快的曲线
+        width: isExpanded ? expandedWidth : collapsedWidth,
+        decoration: BoxDecoration(
+          color: isDark ? AppColors.sidebarDark : AppColors.sidebarLight,
+          borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(24),
+            bottomRight: Radius.circular(24),
           ),
-        ],
-      ),
-      child: Column(
-        children: [
-          // 头部 Logo 区域
-          _buildHeader(context, ref, isExpanded),
-
-          const SizedBox(height: 8),
-
-          // 卡片列表
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              itemCount: cardManager.enabledCards.length,
-              itemBuilder: (context, index) {
-                final card = cardManager.enabledCards[index];
-                final isSelected = card.id == cardManager.selectedCardId;
-
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 4),
-                  child: _buildCardItem(
-                    context,
-                    ref,
-                    card: card,
-                    isSelected: isSelected,
-                    isExpanded: isExpanded,
-                  ),
-                );
-              },
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withAlpha((0.1 * 255).round()),
+              blurRadius: 8,
+              offset: const Offset(2, 0),
             ),
-          ),
+          ],
+        ),
+        child: Column(
+          children: [
+            // 头部 Logo 区域
+            _buildHeader(context, ref, isExpanded),
 
-          const Divider(height: 1),
+            const SizedBox(height: 8),
 
-          // 底部操作区
-          _buildFooter(context, ref, isExpanded),
-        ],
+            // 卡片列表
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                itemCount: cardManager.enabledCards.length,
+                itemBuilder: (context, index) {
+                  final card = cardManager.enabledCards[index];
+                  final isSelected = card.id == cardManager.selectedCardId;
+
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: _buildCardItem(
+                      context,
+                      ref,
+                      card: card,
+                      isSelected: isSelected,
+                      isExpanded: isExpanded,
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            const Divider(height: 1),
+
+            // 底部操作区
+            _buildFooter(context, ref, isExpanded),
+          ],
+        ),
       ),
     );
   }
@@ -88,11 +92,15 @@ class AdaptiveSidebar extends ConsumerWidget {
   /// 构建头部区域
   Widget _buildHeader(BuildContext context, WidgetRef ref, bool isExpanded) {
     final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
       height: 80,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.symmetric(horizontal: isExpanded ? 16 : 8),
       child: Row(
+        mainAxisAlignment: isExpanded
+            ? MainAxisAlignment.start
+            : MainAxisAlignment.center,
         children: [
           // Logo 图标
           Container(
@@ -127,6 +135,20 @@ class AdaptiveSidebar extends ConsumerWidget {
                   color: colorScheme.primary,
                 ),
               ),
+            ),
+
+            // 主题切换按钮（右上角，仅展开时显示）
+            IconButton(
+              icon: Icon(
+                isDark ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
+                size: 20,
+              ),
+              onPressed: () {
+                ref.read(themeModeProvider.notifier).toggleTheme();
+              },
+              tooltip: isDark ? '切换到亮色主题' : '切换到暗色主题',
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints(minWidth: 36, minHeight: 36),
             ),
           ],
         ],

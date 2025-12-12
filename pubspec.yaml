@@ -1,5 +1,5 @@
 name: wripal
-description: "高性能跨平台写作助手 - 手写笔记 + AI 智能管理"
+description: "Wripal - Cross-platform Writing Assistant"
 publish_to: 'none'
 
 version: 0.1.0+1
@@ -26,9 +26,9 @@ dependencies:
   # 工具类
   path_provider: ^2.1.4
   uuid: ^4.5.1
+  fleather: ^1.26.0
 
   # 富文本编辑器
-  flutter_quill: ^11.0.0
 
 dev_dependencies:
   flutter_test:

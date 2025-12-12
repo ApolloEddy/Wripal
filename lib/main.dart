@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app/app.dart';
+import 'app/theme/theme_provider.dart';
 import 'core/services/storage_service.dart';
 import 'features/base/card_registry.dart';
 import 'features/bookshelf/bookshelf_card.dart';
 import 'features/bookshelf/application/book_repository.dart';
 import 'features/handwriting/handwriting_card.dart';
-import 'features/rich_editor/rich_editor_card.dart';
 
 void main() async {
   // 确保 Flutter 绑定初始化
@@ -25,12 +25,19 @@ void main() async {
 
   // 注册功能卡片
   CardRegistry.instance.registerAll([
-    BookshelfCard(), // 书架（放在最前面）
-    HandwritingCard(),
-    RichEditorCard(),
+    BookshelfCard(), // 书架
+    HandwritingCard(), // 手写
     // 未来可以在这里添加更多卡片
   ]);
 
+  // 创建 ProviderContainer 以初始化主题
+  final container = ProviderContainer();
+
+  // 初始化主题设置（从 SharedPreferences 加载）
+  await container.read(themeModeProvider.notifier).initialize();
+
   // 运行应用
-  runApp(const ProviderScope(child: WripalApp()));
+  runApp(
+    UncontrolledProviderScope(container: container, child: const WripalApp()),
+  );
 }
