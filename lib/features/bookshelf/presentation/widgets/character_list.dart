@@ -146,7 +146,7 @@ class CharacterList extends ConsumerWidget {
                 ),
                 const SizedBox(height: 16),
                 DropdownButtonFormField<CharacterRole>(
-                  value: selectedRole,
+                  initialValue: selectedRole,
                   decoration: const InputDecoration(
                     labelText: '角色类型',
                     border: OutlineInputBorder(),
@@ -244,7 +244,7 @@ class CharacterList extends ConsumerWidget {
                 ),
                 const SizedBox(height: 16),
                 DropdownButtonFormField<CharacterRole>(
-                  value: selectedRole,
+                  initialValue: selectedRole,
                   decoration: const InputDecoration(
                     labelText: '角色类型',
                     border: OutlineInputBorder(),

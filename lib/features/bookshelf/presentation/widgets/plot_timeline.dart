@@ -154,7 +154,7 @@ class PlotTimeline extends ConsumerWidget {
                 ),
                 const SizedBox(height: 16),
                 DropdownButtonFormField<PlotType>(
-                  value: selectedType,
+                  initialValue: selectedType,
                   decoration: const InputDecoration(
                     labelText: '情节类型',
                     border: OutlineInputBorder(),
@@ -256,7 +256,7 @@ class PlotTimeline extends ConsumerWidget {
                   children: [
                     Expanded(
                       child: DropdownButtonFormField<PlotType>(
-                        value: selectedType,
+                        initialValue: selectedType,
                         decoration: const InputDecoration(
                           labelText: '类型',
                           border: OutlineInputBorder(),
@@ -277,7 +277,7 @@ class PlotTimeline extends ConsumerWidget {
                     const SizedBox(width: 12),
                     Expanded(
                       child: DropdownButtonFormField<PlotStatus>(
-                        value: selectedStatus,
+                        initialValue: selectedStatus,
                         decoration: const InputDecoration(
                           labelText: '状态',
                           border: OutlineInputBorder(),
